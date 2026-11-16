@@ -63,10 +63,10 @@ export function AuditForm() {
       onSubmit={handleSubmit}
       noValidate
       aria-labelledby="audit-heading"
-      className="rounded-2xl border border-[#e5e5e0] bg-white p-6 sm:p-8 space-y-5 shadow-[0_18px_40px_-28px_rgba(20,20,22,0.14)]"
+      className="rounded-lg border border-[#d4d4cc] bg-white p-6 sm:p-8 space-y-5"
     >
       <div>
-        <label htmlFor="audit-name" className="block text-sm font-medium text-[#141416] mb-2">
+        <label htmlFor="audit-name" className="block font-mono-code text-xs uppercase tracking-wider text-[#141413] mb-2">
           Vaše meno
         </label>
         <input
@@ -86,14 +86,14 @@ export function AuditForm() {
           className="field-input"
         />
         {errors.name && (
-          <p id="audit-name-err" className="mt-1.5 text-sm text-red-700">
+          <p id="audit-name-err" className="mt-1.5 text-xs text-red-700">
             {errors.name}
           </p>
         )}
       </div>
 
       <div>
-        <label htmlFor="audit-email" className="block text-sm font-medium text-[#141416] mb-2">
+        <label htmlFor="audit-email" className="block font-mono-code text-xs uppercase tracking-wider text-[#141413] mb-2">
           Pracovný e-mail
         </label>
         <input
@@ -117,14 +117,14 @@ export function AuditForm() {
           className="field-input"
         />
         {errors.email && (
-          <p id="audit-email-err" className="mt-1.5 text-sm text-red-700">
+          <p id="audit-email-err" className="mt-1.5 text-xs text-red-700">
             {errors.email}
           </p>
         )}
       </div>
 
       <div>
-        <label htmlFor="audit-process" className="block text-sm font-medium text-[#141416] mb-2">
+        <label htmlFor="audit-process" className="block font-mono-code text-xs uppercase tracking-wider text-[#141413] mb-2">
           Firma a proces na zrýchlenie
         </label>
         <input
@@ -144,24 +144,23 @@ export function AuditForm() {
           className="field-input"
         />
         {errors.process && (
-          <p id="audit-process-err" className="mt-1.5 text-sm text-red-700">
+          <p id="audit-process-err" className="mt-1.5 text-xs text-red-700">
             {errors.process}
           </p>
         )}
       </div>
 
       <div className="pt-1">
-        <button type="submit" className="btn-primary w-full sm:w-auto">
-          Objednať audit procesov
-          <span aria-hidden="true">→</span>
+        <button type="submit" className="btn-lime w-full sm:w-auto">
+          Objednať audit procesov →
         </button>
       </div>
 
-      <p role="status" className="text-sm font-medium text-[#0f5257] min-h-[20px]">
+      <p role="status" className="font-mono-code text-xs text-[#141413] min-h-[18px]">
         {statusMessage}
       </p>
-      <p className="text-xs text-[#5f6066]">
-        Odpovedajú priamo vývojári z Košíc do jedného pracovného dňa.
+      <p className="font-mono-code text-[11px] uppercase tracking-wider text-[#7a7d6e]">
+        Odpoveď priamo od vývojárov z Košíc do 24 hodín
       </p>
     </form>
   );
