@@ -8,8 +8,8 @@ interface ProcessStep {
   title: string;
   summary: string;
   deliverables: string[];
-  terminalTitle: string;
-  terminalLines: string[];
+  outcomeLabel: string;
+  outcomeValue: string;
 }
 
 const STEPS: ProcessStep[] = [
@@ -20,58 +20,40 @@ const STEPS: ProcessStep[] = [
     summary:
       'Prídeme priamo do vašej firmy v Košiciach či Prešove. Sadneme si s ľuďmi v sklade, obchode aj účtarni a zmeriame, kde sa stráca najviac hodín.',
     deliverables: [
-      'Rozhovory s 5–12 kľúčovými pracovníkmi',
+      'Osobné rozhovory s 5 až 12 kľúčovými pracovníkmi',
       'Zoznam úzkych miest zoradený podľa ušetrených hodín',
-      'Pevný plán 14-dňového pilota pred začiatkom kódenia',
+      'Presný rozsah 14-dňového pilota pred začiatkom programovania',
     ],
-    terminalTitle: 'audit-report.json',
-    terminalLines: [
-      '{',
-      '  "firma": "Strojársky podnik · Košice",',
-      '  "bottleneck_1": "Ručný prepis dodacích listov do Pohody (11 h/týždeň)",',
-      '  "bottleneck_2": "Triedenie dopytov a príprava ponúk (7 h/týždeň)",',
-      '  "pilot_cieľ": "Znížiť ručný prepis o 80 % do 14 dní"',
-      '}',
-    ],
+    outcomeLabel: 'Výstup auditu',
+    outcomeValue: 'Mapa procesov a odhad úspory hodín',
   },
   {
     code: '02',
     duration: '14 dní',
     title: 'Integrácia do ERP, CRM a pošty',
     summary:
-      'Nevytvárame ďalší izolovaný chatbot. Napojíme AI priamo na systémy, ktoré už používate, s povinnou kontrolou človekom pred zápisom.',
+      'Nevytvárame ďalší samostatný chat. Napojíme AI priamo na systémy, ktoré už používate, s povinným schválením človekom pred zápisom.',
     deliverables: [
-      'Konektor na Pohoda / Kros / SAP alebo vlastnú databázu',
-      'Automatické testy presnosti na vašich reálnych dokladoch',
-      'Auditný log každého kroku pre kontrolu a súlad s EÚ AI Act',
+      'Priame prepojenie na Pohoda, Kros, SAP alebo firemnú databázu',
+      'Overenie presnosti na vašich reálnych dokladoch a e-mailoch',
+      'Prehľadný záznam každého kroku pre spätnú kontrolu',
     ],
-    terminalTitle: 'erp-bridge.py · eval-gate',
-    terminalLines: [
-      '$ pytest tests/test_golden_invoices.py --strict',
-      '✓ 30/30 dokladov: správne IČO a súčet položiek (100.0 %)',
-      '✓ 29/30 dokladov: automatické párovanie SKU karty (96.7 %)',
-      '✓ 1/30 dokladov: odchýlka ceny > 2 % → odoslané na schválenie',
-      'STATUS: READY FOR PRODUCTION',
-    ],
+    outcomeLabel: 'Výstup pilota',
+    outcomeValue: 'Funkčný proces nasadený v prevádzke',
   },
   {
     code: '03',
     duration: 'Dlhodobo',
     title: 'Nasadenie na váš server a školenie',
     summary:
-      'Riešenie beží u vás (On-Premise) alebo na vyhradenom serveri v EÚ. Váš tím zaškolíme tak, aby ho vedel samostatne používať aj rozvíjať.',
+      'Riešenie beží u vás alebo na vyhradenom serveri v EÚ. Váš tím zaškolíme tak, aby ho vedel samostatne používať každý deň.',
     deliverables: [
-      'Dáta neodchádzajú mimo firmu ani na tréning cudzích modelov',
+      'Firemné dáta neodchádzajú na tréning cudzích modelov',
       'Praktické workshopy pre operátorov, obchod aj vedenie',
-      'Dokumentácia, monitoring nákladov a servisná podpora',
+      'Dokumentácia, priebežná údržba a kontrola nákladov',
     ],
-    terminalTitle: 'deploy-check.sh',
-    terminalLines: [
-      '$ curl -s http://10.0.4.12:8080/health',
-      '{"status":"ok","residency":"on-premise-sk","siem_logging":"active"}',
-      '✓ Prístup len cez firemnú VPN / internú sieť',
-      '✓ Tím zaškolený: 14 zamestnancov (obchod + sklad + účtáreň)',
-    ],
+    outcomeLabel: 'Výstup odovzdania',
+    outcomeValue: 'Zaškolený tím a plná kontrola nad systémom',
   },
 ];
 
@@ -91,49 +73,51 @@ export function ProcessShowcase() {
               role="tab"
               aria-selected={active}
               onClick={() => setSelected(index)}
-              className={`w-full text-left rounded-lg border p-5 transition-colors cursor-pointer ${
+              className={`w-full text-left rounded-xl border p-5 transition-all cursor-pointer ${
                 active
-                  ? 'border-[#93f1f7]/60 bg-[#121215]'
-                  : 'border-white/10 bg-[#0a0a0c] hover:border-white/25'
+                  ? 'border-[#0f5257] bg-white shadow-[0_12px_28px_-20px_rgba(15,82,87,0.35)]'
+                  : 'border-[#e5e5e0] bg-[#f3f3ef]/60 hover:bg-white hover:border-[#cfcfc8]'
               }`}
             >
               <div className="flex items-center justify-between gap-2 mb-1.5">
-                <span className="font-mono-code text-xs text-[#93f1f7]">Krok {step.code}</span>
-                <span className="font-mono-code text-xs text-white/55">{step.duration}</span>
+                <span className="font-mono-code text-xs font-medium text-[#0f5257]">
+                  Krok {step.code}
+                </span>
+                <span className="font-mono-code text-xs text-[#5f6066]">{step.duration}</span>
               </div>
-              <h3 className="text-lg font-medium text-white">{step.title}</h3>
-              <p className="mt-1.5 text-sm text-white/70 leading-relaxed">{step.summary}</p>
+              <h3 className="text-lg font-medium text-[#141416]">{step.title}</h3>
             </button>
           );
         })}
       </div>
 
-      <div className="lg:col-span-7 rounded-lg border border-white/15 bg-[#0d0d0d] p-6 sm:p-8 space-y-6">
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4">
+      <div className="lg:col-span-7 card-3d p-6 sm:p-8 space-y-6">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#e5e5e0] pb-5">
           <div>
-            <span className="font-mono-code text-xs text-[#93f1f7]">
+            <span className="font-mono-code text-xs font-medium text-[#0f5257]">
               Fáza {current.code} · {current.duration}
             </span>
-            <h3 className="text-xl font-medium text-white mt-1">{current.title}</h3>
+            <h3 className="text-2xl font-medium text-[#141416] mt-1">{current.title}</h3>
           </div>
-          <span className="rounded border border-white/15 px-2.5 py-1 font-mono-code text-xs text-white/70">
-            {current.terminalTitle}
+          <span className="rounded-md bg-[#f3f3ef] px-3 py-1.5 text-xs font-medium text-[#141416]">
+            {current.duration}
           </span>
         </div>
 
-        <ul className="space-y-3">
+        <p className="text-base text-[#5f6066] leading-relaxed">{current.summary}</p>
+
+        <ul className="space-y-3 pt-1">
           {current.deliverables.map((item) => (
-            <li key={item} className="flex items-start gap-3 text-sm sm:text-base text-white/85">
-              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#93f1f7] shrink-0" aria-hidden="true" />
+            <li key={item} className="flex items-start gap-3 text-sm sm:text-base text-[#141416]">
+              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#0f5257] shrink-0" aria-hidden="true" />
               <span>{item}</span>
             </li>
           ))}
         </ul>
 
-        <div className="rounded-md border border-white/10 bg-black p-4 font-mono-code text-xs text-[#93f1f7]/90 overflow-x-auto leading-relaxed">
-          {current.terminalLines.map((line) => (
-            <div key={line} className="whitespace-pre">{line}</div>
-          ))}
+        <div className="rounded-lg border border-[#e5e5e0] bg-[#f3f3ef] px-4 py-3.5 flex flex-wrap items-center justify-between gap-2">
+          <span className="text-xs font-medium text-[#5f6066]">{current.outcomeLabel}</span>
+          <span className="text-sm font-medium text-[#141416]">{current.outcomeValue}</span>
         </div>
       </div>
     </div>

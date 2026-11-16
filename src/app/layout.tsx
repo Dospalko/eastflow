@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sk" className={`${ibmPlexSans.variable} ${ibmPlexMono.variable}`}>
-      <body className="bg-black text-white antialiased">{children}</body>
+      <body className="bg-[#fbfbfa] text-[#141416] antialiased">{children}</body>
     </html>
   );
 }

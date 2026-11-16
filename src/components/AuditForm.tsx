@@ -63,10 +63,10 @@ export function AuditForm() {
       onSubmit={handleSubmit}
       noValidate
       aria-labelledby="audit-heading"
-      className="rounded-lg border border-white/15 bg-[#0d0d0d] p-6 sm:p-8 space-y-5"
+      className="rounded-2xl border border-[#e5e5e0] bg-white p-6 sm:p-8 space-y-5 shadow-[0_18px_40px_-28px_rgba(20,20,22,0.14)]"
     >
       <div>
-        <label htmlFor="audit-name" className="block text-sm font-medium text-white mb-2">
+        <label htmlFor="audit-name" className="block text-sm font-medium text-[#141416] mb-2">
           Vaše meno
         </label>
         <input
@@ -86,14 +86,14 @@ export function AuditForm() {
           className="field-input"
         />
         {errors.name && (
-          <p id="audit-name-err" className="mt-1.5 text-sm text-red-400">
+          <p id="audit-name-err" className="mt-1.5 text-sm text-red-700">
             {errors.name}
           </p>
         )}
       </div>
 
       <div>
-        <label htmlFor="audit-email" className="block text-sm font-medium text-white mb-2">
+        <label htmlFor="audit-email" className="block text-sm font-medium text-[#141416] mb-2">
           Pracovný e-mail
         </label>
         <input
@@ -117,14 +117,14 @@ export function AuditForm() {
           className="field-input"
         />
         {errors.email && (
-          <p id="audit-email-err" className="mt-1.5 text-sm text-red-400">
+          <p id="audit-email-err" className="mt-1.5 text-sm text-red-700">
             {errors.email}
           </p>
         )}
       </div>
 
       <div>
-        <label htmlFor="audit-process" className="block text-sm font-medium text-white mb-2">
+        <label htmlFor="audit-process" className="block text-sm font-medium text-[#141416] mb-2">
           Firma a proces na zrýchlenie
         </label>
         <input
@@ -144,7 +144,7 @@ export function AuditForm() {
           className="field-input"
         />
         {errors.process && (
-          <p id="audit-process-err" className="mt-1.5 text-sm text-red-400">
+          <p id="audit-process-err" className="mt-1.5 text-sm text-red-700">
             {errors.process}
           </p>
         )}
@@ -157,10 +157,10 @@ export function AuditForm() {
         </button>
       </div>
 
-      <p role="status" className="text-sm text-[#93f1f7] min-h-[20px]">
+      <p role="status" className="text-sm font-medium text-[#0f5257] min-h-[20px]">
         {statusMessage}
       </p>
-      <p className="text-xs text-white/55">
+      <p className="text-xs text-[#5f6066]">
         Odpovedajú priamo vývojári z Košíc do jedného pracovného dňa.
       </p>
     </form>
