@@ -1,0 +1,32 @@
+image: node:24-alpine
+
+stages:
+  - build
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+build:
+  stage: build
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - dist
+
+pages:
+  stage: deploy
+  dependencies:
+    - build
+  script:
+    - mv dist public_pages
+    - rm -rf public
+    - mv public_pages public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
