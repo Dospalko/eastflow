@@ -1,12 +1,12 @@
 # EastFlow AI
 
-Webová prezentácia a vstupný bod pre implementáciu AI do firemných procesov na východnom Slovensku (Košice, Prešov a okolie).
+Implementácia AI do firemných procesov na východnom Slovensku (Košice, Prešov a okolie).
 
 ## Stack
-- **Astro 5** (Static output, nulový zbytočný JS)
-- **TypeScript** (`strict`)
-- **Tailwind CSS v4** (`@tailwindcss/vite`)
-- **GitLab CI/CD** (`.gitlab-ci.yml` pripravený na build a GitLab Pages)
+- **Next.js 15** (App Router, `output: 'export'`)
+- **React 19 + TypeScript** (`strict`)
+- **Tailwind CSS v4**
+- **Interaktívne UI ukážky** (ERP extrakcia, interný asistent, schvaľovacie pipeline)
 
 ## Lokálny vývoj
 
@@ -15,10 +15,8 @@ npm install
 npm run dev
 ```
 
-## Produkčný build
+## Statický build (`out/`)
 
 ```bash
 npm run build
 ```
-
-Výstup je v priečinku `dist/`.
